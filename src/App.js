@@ -5,6 +5,7 @@ import { ItemListContainer } from './components/ItemListContainer';
 import Home from './views/Home';
 import Products from './views/Products';
 import Sale from './views/Sale';
+import ProductDetail from './views/product';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 function App() {
   return (
@@ -25,6 +26,12 @@ function App() {
             path='/products'
           >
             <Products/>
+          </Route>
+          <Route
+          exact
+            path='/product/detail'
+          >
+            <ProductDetail/>
           </Route>
           <Route
           exact
