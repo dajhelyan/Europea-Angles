@@ -7,6 +7,7 @@ import Products from './views/Products';
 import Sale from './views/Sale';
 import ProductDetail from './views/product';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { ItemDetailContainer } from './components/itemDetailContainer';
 function App() {
   return (
     <div className="App">
@@ -15,23 +16,23 @@ function App() {
       <Router>
       <NavBar />
         <Switch>
-          <Route
+          {/* <Route
           exact
             path='/'
           >
             <Home/>
-          </Route>
+          </Route> */}
           <Route
           exact
-            path='/products'
+            path='/'
           >
             <Products/>
           </Route>
           <Route
           exact
-            path='/product/detail'
+            path='/product/detail/:id'
           >
-            <ProductDetail/>
+            <ItemDetailContainer/>
           </Route>
           <Route
           exact

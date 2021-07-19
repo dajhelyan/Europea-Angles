@@ -2,18 +2,18 @@ import React, { useState, useEffect } from "react";
 import { Card, Badge, ListGroup } from 'react-bootstrap'
 import { Link } from "react-router-dom";
 
-export const Item = ({ name, img, price }) => {
+export const Item = ({ data }) => {
 
 	return (
-		<Link to="/product/detail">
+		<Link to={`/product/detail/${data.id}`}>
 			<Card className={"card-item"} style={{ width: '18rem' }}>
-				<Card.Header className={"item-header"}>{name}</Card.Header>
-				<Card.Img variant="top" src={img} className={'cover-img'} />
+				<Card.Header className={"item-header"}>{data.title}</Card.Header>
+				<Card.Img variant="top" src={data.pictureUrl} className={'cover-img'} />
 				<Card.Body className={"item-body"}>
 
 				</Card.Body>
 				<Card.Footer className={"item-footer"}>
-					<h4> <Badge variant="info">{`$ ${price}`}</Badge>
+					<h4> <Badge variant="info">{`$ ${data.price}`}</Badge>
 					</h4>
 				</Card.Footer>
 			</Card>

@@ -4,15 +4,13 @@ import Item from './Item'
 import { CardColumns } from 'react-bootstrap';
 
 export function ItemList({ items} ){
-    // recibe la data para pintar la data
+    // deberia pintar inicialmente todos los productos
     console.log('ite', items);
     return (
 			<CardColumns>
-          {items === '' ? '':items.map((item) =>
+          {items.length === 0 ? '':items[0].products.all.map((item) =>
             <Item
-						name={item.title}
-						img={item.pictureUrl}
-						price={item.price}
+						data={item}
 						/>
           )}
         </CardColumns>
