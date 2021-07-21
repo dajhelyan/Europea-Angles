@@ -28,7 +28,7 @@ export function Cart() {
 						<Card.Text>
 							
 						</Card.Text>
-						<Button variant="primary"><NavLink to="/" variant="primary">Ver productos</NavLink></Button>
+						<Button variant="outline-primary"><NavLink to="/" variant="primary">Ver productos</NavLink></Button>
 					</Card.Body>
 				</Card>
 				{/* <ItemCount stock={5} initial={1} onAdd={(count) => {alert(count + "Producto(s) agregados" )}}/> */}
