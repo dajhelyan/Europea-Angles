@@ -47,3 +47,6 @@
   object-fit: contain;
   margin: 0 auto;
 }
+.d-none{
+  display: none;
+}
