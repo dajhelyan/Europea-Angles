@@ -156,17 +156,17 @@ const data = [{
 			},
 			{
 				id: "0007",
-				title: "Jean Balenciaga",
-				description: "Jean reacto color celeste vintage",
+				title: "Pantalon Resort",
+				description: "Pantalon vintage",
 				price: "180",
-				pictureUrl: "https://i.pinimg.com/474x/a4/37/38/a4373847b993f824931c4605fc24f7a4.jpg"
+				pictureUrl: "https://i.pinimg.com/474x/0a/36/8e/0a368e86716113bb347df6b17d3dd7a0.jpg"
 			},
 			{
 				id: "0008",
-				title: "Jean Ocre",
-				description: "Jean a la cintura color ocre",
+				title: "Pantalon Punk",
+				description: "Pantalon punk verde ",
 				price: "100",
-				pictureUrl: "https://i.pinimg.com/474x/a1/a0/c7/a1a0c7592841dfc86f2b6e439df5c664.jpg"
+				pictureUrl: "https://i.pinimg.com/474x/df/cc/78/dfcc78b11d3bb6b025311242367e55b4.jpg"
 			},
 			{
 				id: "0009",

@@ -41,7 +41,7 @@ export function NavBar() {
 
             {/* probar context con la data para no estar haciendo un useeefect en cada vista */}
           </NavDropdown>
-          <Nav.Link href="/sale">Sale</Nav.Link>
+          <Nav.Link href="/cart">Cart</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

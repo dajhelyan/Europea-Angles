@@ -4,7 +4,7 @@ import { NavBar } from './components/NavBar';
 import { ItemListContainer } from './components/ItemListContainer';
 import Home from './views/Home';
 import Products from './views/Products';
-import Sale from './views/Sale';
+import Cart from './views/Cart';
 import ProductDetail from './views/product';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ItemDetailContainer } from './components/itemDetailContainer';
@@ -42,9 +42,9 @@ function App() {
           </Route>
           <Route
           exact
-            path='/sale'
+            path='/cart'
           >
-            <Sale/>
+            <Cart/>
           </Route>
         </Switch>
       </Router>
