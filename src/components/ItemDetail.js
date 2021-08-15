@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Container, Row, Col, Card, Badge, Image, Button } from 'react-bootstrap'
 import { ItemCount } from "./ItemCount";
+import { CardContext } from "../context/cartContext";
+
 import { NavLink } from "react-router-dom";
 // llamar componente itemcounter
 // crear evento de compra
@@ -8,10 +10,14 @@ export function ItemDetail({ data }) {
 
   const [cant, setCant] = useState(1);
   const [select, setSelect] = useState(false)
+// al dar click en agregar al carrito deberia agregar el item 
+  const { addItem } = useContext(CardContext) 
 
   function onAdd(quantityToAdd) {
+
     setCant(quantityToAdd)
-    setSelect(true)
+     setSelect(true)
+   
   }
   useEffect(() => {
   }, [select]);
@@ -37,7 +43,9 @@ export function ItemDetail({ data }) {
                 <Button
                   type="button"
                   className={select ? 'w-100' : 'd-none'}
-                  variant="outline-primary">
+                  variant="outline-primary"
+                  onClick=""
+                  >
                   <NavLink to='/cart'>Terminar compra</NavLink> </Button>
               </Card.Footer>
             </Card.Body>

@@ -10,7 +10,15 @@
 
 .card-item{
   border: none;
-
+  box-shadow: 2px 1px 22px 11px rgb(0 0 0 / 20%);
+  width: 18rem;
+  margin: 1em auto;
+}
+.cardColums {
+  padding: 1.2em;
+}
+.grid-columns {
+  row-gap: 1em;
 }
 .card-item .item-body{
   background-color: rgba(0,0,0,.03)!important;

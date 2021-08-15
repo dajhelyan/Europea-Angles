@@ -6,7 +6,7 @@ export const Item = ({ data }) => {
 
 	return (
 		<Link to={`/product/detail/${data.id}`}>
-			<Card className={"card-item"} style={{ width: '18rem' }}>
+			<Card className={"card-item"} style={{ }}>
 				<Card.Header className={"item-header"}>{data.title}</Card.Header>
 				<Card.Img variant="top" src={data.pictureUrl} className={'cover-img'} />
 				<Card.Body className={"item-body"}>

@@ -7,16 +7,14 @@ export function NavBar() {
   const [category, setCategory] = useState([])
   // llamado a la data
   const getItem = async (data) => {
-
     try {
       let result = await new Promise((resolve, reject) => {
         setTimeout(resolve(data), 2000);
       })
-       setCategory(Object.keys(result[0].categories))
+      setCategory(Object.keys(result[0].categories))
     } catch {
       console.log('error')
     }
-
   }
   console.log(category, 'va');
   useEffect(() => {

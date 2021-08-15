@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { Card } from 'react-bootstrap'
+import React, { useState, useEffect, useContext } from "react";
+import { Card } from 'react-bootstrap';
 import { ItemCount } from './ItemCount';
-import ItemList from './ItemList'
-import dataJSON from '../data/products'
+import ItemList from './ItemList';
+import dataJSON from '../data/products';
 import { useParams } from "react-router-dom";
 
 export function ItemListContainer() {
@@ -13,7 +13,6 @@ export function ItemListContainer() {
 	console.log(categoryId, 'here')
 
 	useEffect(() => {
-
 		new Promise((resolve, reject) => {
 			setTimeout(resolve(dataJSON), 3000);
 		})
@@ -26,8 +25,8 @@ export function ItemListContainer() {
 							return initial = ele[1];
 						}
 					})
-					
-				console.log(respon, 'ele')
+
+					console.log(respon, 'ele')
 					let result = initial;
 					console.log(result, 'result');
 					setData(result)
