@@ -7,6 +7,8 @@ export const useCardContext = () => useContext(CardContext);
 
 function CardProvider({ children }) {
   const [cart, setCart] = useState([])
+  const [cant, setCant] = useState(1);
+
 
   function onAdd(itemToAdd, quantity) {
     console.log(quantity);
@@ -29,7 +31,8 @@ function CardProvider({ children }) {
   }
 
   function removeItem(itemId) {
-
+    const result = cart.filter(itemtoAdd => itemtoAdd.id !== itemId)
+    setCart(result)
   }
   function clear() {
 
@@ -38,7 +41,15 @@ function CardProvider({ children }) {
     cart.find(item => item.id === id)
   }
   return (
-    <CardContext.Provider value={{ cart, setCart, onAdd }}>
+    <CardContext.Provider 
+    value={{ 
+      cart, 
+      setCart, 
+      onAdd, 
+      removeItem ,
+      cant, 
+      setCant
+      }}>
       {children}
     </CardContext.Provider>
   )
