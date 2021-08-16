@@ -35,6 +35,7 @@ function CardProvider({ children }) {
     setCart(result)
   }
   function clear() {
+    setCart([])
 
   }
   function IsInCart(id) {
@@ -48,7 +49,8 @@ function CardProvider({ children }) {
       onAdd, 
       removeItem ,
       cant, 
-      setCant
+      setCant, 
+      clear
       }}>
       {children}
     </CardContext.Provider>

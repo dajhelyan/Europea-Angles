@@ -17,13 +17,10 @@ export function ItemDetail({ data }) {
     setSelect(true)
     console.log(cant);
 
-    
   }
 
   function handleRemove(data){
-    console.log(data, 'hete');
     setCant(1)
-    console.log(cant);
     removeItem(data.id)
   }
   useEffect(() => {
