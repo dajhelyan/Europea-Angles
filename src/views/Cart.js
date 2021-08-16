@@ -2,8 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Card, Button } from 'react-bootstrap'
 import { NavLink } from "react-router-dom";
 import dataJSON from '../data/products'
+import CardItem from "../components/cardItem";
+import { useCardContext } from "../context/cartContext";
 export function Cart() {
-	// aca hacer promesa 
+	// traer prductos de cart
+	const { cart } = useCardContext()
+
+
+	const [totalOfProducts, setTotalOfProducts] = useState('')
 	const [data, setData] = useState([])
 	const [loading, setLoading] = useState()
 
@@ -19,22 +25,22 @@ export function Cart() {
 	}, [])
 
 	return (
-		<Card>
-			<Card.Body>
-				<Card style={{ width: '18rem' }}>
-					{/* <Card.Img variant="top" src="holder.js/100px180" /> */}
-					<Card.Body>
-						<Card.Title>Estamos trabajando</Card.Title>
-						<Card.Text>
-							
-						</Card.Text>
-						<Button variant="outline-primary"><NavLink to="/" variant="primary">Ver productos</NavLink></Button>
-					</Card.Body>
-				</Card>
-				{/* <ItemCount stock={5} initial={1} onAdd={(count) => {alert(count + "Producto(s) agregados" )}}/> */}
-				{/* <ItemList items={data}/> */}
-			</Card.Body>
-		</Card>
+		<>
+			<Card>
+				<Card.Body>
+					<Card style={{ width: '18rem' }}>
+						<div className={"header-container"}>
+							<span className={"title"}>{`Bolsa de compras (${totalOfProducts})productos`}</span>
+						</div>
+					</Card>
+					<CardItem data={cart} />
+					{/* <ItemCount stock={5} initial={1} onAdd={(count) => {alert(count + "Producto(s) agregados" )}}/> */}
+					{/* <ItemList items={data}/> */}
+				</Card.Body>
+			</Card>
+
+			<CardItem />
+		</>
 	)
 }
 export default Cart;
