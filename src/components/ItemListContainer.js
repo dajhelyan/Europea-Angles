@@ -5,6 +5,8 @@ import ItemList from './ItemList';
 import dataJSON from '../data/products';
 import { useParams } from "react-router-dom";
 
+import { getCollection, getItemsCategory } from "../firebase/firestore";
+
 export function ItemListContainer() {
 	// aca hacer promesa 
 	const [data, setData] = useState([])
@@ -13,31 +15,36 @@ export function ItemListContainer() {
 	console.log(categoryId, 'here')
 
 	useEffect(() => {
-		new Promise((resolve, reject) => {
-			setTimeout(resolve(dataJSON), 3000);
-		})
-			.then(res => {
-				// resvisar error en estuctura de data categories
-				if (categoryId) {
-					let initial;
-					let respon = Object.entries(res[0].categories).map((ele) => {
-						if (ele[0] === categoryId) {
-							return initial = ele[1];
-						}
-					})
+		// si no se busca una categoria carga todos items
+		if (categoryId) {
+			getItemsCategory("items", "categoryId", categoryId)
+				.then((querySnapshot) => {
+					if (querySnapshot.size === 0) {
+						console.log('no result');
+					} else {
+						setData(querySnapshot.docs.map(doc => {
+							if (doc.data().stock > 0) {
+								return ({ id: doc.id, ...doc.data() })
+							}
+						}))
+					}
+				})
+				.catch((error) => {
+					console.log("A ocurrido un error", error);
+				});
+		} else {
+			getCollection("items")
+				.then((querySnapshot) => {
+					if (querySnapshot.size === 0) {
+						console.log('no result')
+					} else {
+						setData(querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })))
+					}
+				}).catch(error => {
+					console.log("A ocurrido un error", error);
+				})
+		}
 
-					console.log(respon, 'ele')
-					let result = initial;
-					console.log(result, 'result');
-					setData(result)
-				} else {
-					let result2 = res[0].products.all;
-					setData(result2)
-				}
-
-			}).catch(res => {
-				console.log(res)
-			})
 	}, [categoryId])
 
 	return (
