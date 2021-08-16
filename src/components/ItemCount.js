@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Card, Button, ListGroup } from 'react-bootstrap'
 
 export function ItemCount({ stock, initial, onAdd }) {
-
-	const [count, setCount] = useState(initial)
-
+  const [count, setCount] = useState(initial)
 	const addCount = () => {
 		setCount(count + 1)
 

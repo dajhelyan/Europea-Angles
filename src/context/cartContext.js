@@ -1,40 +1,44 @@
-import React, { useState } from "react"
+import React, { useState, useContext, createContext } from "react"
+import { Card } from "react-bootstrap";
 import dataJSON from '../data/products'
 
-export const CardContext = React.createContext();
+const CardContext = React.createContext();
+export const useCardContext = () => useContext(CardContext);
 
-function CardProvider({children}){
+function CardProvider({ children }) {
   const [cart, setCart] = useState([])
- 
-  function addItem(item, quantity){
-  // busqueda por id
-  // cantidad
-    return new Promise((resolve, reject) => {
-      setTimeout(resolve(dataJSON), 2000);
-    }).then(res => {
-      let result = res[0].products.all.find((elemento) => {
-        return elemento.id === item
-      })
-      let response = [...result, quantity]
-      console.log(response, 'response');
-      setCart(response)
-    }).catch(res => {
-      console.log(res)
-    })
 
+  function onAdd(itemToAdd, quantity) {
+    console.log(quantity);
+    const setquantity = quantity = 1;
+
+    if (IsInCart(itemToAdd)) {
+      const newItem = cart.map(item => {
+        console.log(item, 'aqui');
+        if (item.id === itemToAdd) {
+          const result = item.quantity + setquantity;
+          return { ...item, quantity: result };
+        }
+        return item;
+      })
+      setCart(newItem)
+    } else {
+      itemToAdd.quantity = setquantity;
+      setCart([...cart, itemToAdd]);
+    }
   }
 
-  function removeItem(itemId){
+  function removeItem(itemId) {
 
   }
   function clear() {
-    
+
   }
   function IsInCart(id) {
-    
+    cart.find(item => item.id === id)
   }
   return (
-    <CardContext.Provider value={{cart, setCart, addItem}}>
+    <CardContext.Provider value={{ cart, setCart, onAdd }}>
       {children}
     </CardContext.Provider>
   )

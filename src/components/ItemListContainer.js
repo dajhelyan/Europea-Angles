@@ -1,18 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Card } from 'react-bootstrap';
-import { ItemCount } from './ItemCount';
 import ItemList from './ItemList';
-import dataJSON from '../data/products';
 import { useParams } from "react-router-dom";
 
 import { getCollection, getItemsCategory } from "../firebase/firestore";
 
 export function ItemListContainer() {
-	// aca hacer promesa 
+
 	const [data, setData] = useState([])
 
 	const categoryId = useParams().id;
-	console.log(categoryId, 'here')
 
 	useEffect(() => {
 		// si no se busca una categoria carga todos items
