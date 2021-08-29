@@ -1,50 +1,42 @@
 import React, { useState } from 'react';
 import { useCardContext } from '../context/cartContext';
-import { Container, Row, Col, Card, Badge, Image, Button } from 'react-bootstrap'
+import { Row, Col, Card, Badge, Image, Button, Container } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom';
 import { ItemCount } from './ItemCount';
 
-function CardItem({ data }) {
-  console.log(data, 'card')
-  const { cant } = useCardContext();
+function CardItem() {
+  const { cant, cart, removeItem } = useCardContext();
   return (
     <Container>
       <Row>
-        <Col xs={4} md={4}>
-          {/* <Image src={data.pictureUrl} rounded /> */}
+        <Col xs={2} md={4}>
+          <Image src={cart.pictureUrl} rounded />
         </Col>
         <Col xs={6} md={4}>
-          <Card border="light" style={{ width: '18rem' }}>
+          <Container border="light" style={{ width: '18rem' }}>
             <Card.Body>
-              <Card.Title>{data.name}</Card.Title>
+              <Card.Title>{cart.title}</Card.Title>
               <Card.Text>
-                {data.description}
+                {cart.description}
               </Card.Text>
               <Card.Footer className={"item-footer"}>
-                <h4> <Badge variant="info">{`$ ${data.price}`}</Badge>
+                <h4> <Badge variant="info">{`$ ${cart.price}`}</Badge>
                 </h4>
-                <ItemCount stock={data.stock} initial={cant}
+                <ItemCount stock={cart.stock} initial={cant}
                 // onAdd={handleAdd} 
                 />
+
                 <Button
                   type="button"
                   // className={select ? 'w-100' : 'd-none'}
                   variant="outline-primary"
-                  onClick=""
-                >
-                  <NavLink to='/cart'>Terminar compra</NavLink>
-                </Button>
-                <Button
-                  type="button"
-                  // className={select ? 'w-100' : 'd-none'}
-                  variant="outline-primary"
-                // onClick={handleRemove}
+                  onClick={() => { removeItem(cart) }}
                 >
                   Eliminar producto
                 </Button>
               </Card.Footer>
             </Card.Body>
-          </Card>
+          </Container>
         </Col>
 
       </Row>

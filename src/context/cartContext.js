@@ -9,23 +9,20 @@ function CardProvider({ children }) {
   const [cart, setCart] = useState([])
   const [cant, setCant] = useState(1);
 
-
   function onAdd(itemToAdd, quantity = 1) {
     console.log(IsInCart(itemToAdd), 'cuan');
     // const setquantity = quantity = 1;
     console.log(cart, 'uyy');
     if (IsInCart(itemToAdd) === true) {
       console.log("entree", 'aqui');
-      const newItem = cart.map(item => {
-        console.log(item, 'aqui');
-
+      const newItem = cart.map((item) => {
         if (item.id === itemToAdd.id) {
-          console.log(item.quantity, 'popoiii');
+
           const result = item.quantity + quantity;
-          console.log(result, 'res');
+
           return { ...item, quantity: result };
         }
-
+        return item
       })
       console.log(newItem, 'poppo');
       setCart(newItem)
@@ -37,7 +34,8 @@ function CardProvider({ children }) {
   }
 
   function removeItem(itemId) {
-    const result = cart.filter(itemtoAdd => itemtoAdd.id !== itemId)
+    console.log(itemId, 'id');
+    const result = cart.filter(itemtoAdd => itemtoAdd.id !== itemId.id)
     setCart(result)
   }
   function clear() {
