@@ -26,7 +26,6 @@ export function Cart() {
 							)
 						})
 					}
-					
 				</Card.Body>
 			</Card>
 		</>

@@ -16,7 +16,6 @@ export function ItemDetail({ data }) {
     onAdd(data, quantityToAdd)
     setSelect(true)
     console.log(cant);
-
   }
 
   function handleRemove(data){
