@@ -45,7 +45,7 @@ function CardProvider({ children }) {
 
   function removeItem(itemId) {
     console.log(itemId, 'id');
-    const result = cart.filter(itemtoAdd => itemtoAdd.id !== itemId.id)
+    const result = cart.filter(itemtoAdd => itemtoAdd.id !== itemId)
     setCart(result)
   }
   function clear() {
@@ -64,7 +64,7 @@ function CardProvider({ children }) {
         removeItem,
         cant,
         setCant,
-        clear
+        clear,
       }}>
       {children}
     </CardContext.Provider>

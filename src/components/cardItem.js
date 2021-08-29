@@ -7,7 +7,6 @@ import { ItemCount } from './ItemCount';
 function CardItem({ data }) {
   const { removeItem, cant } = useCardContext();
 
-
   let subPrice = (data, cant) => {
     return data.price * cant;
   }
