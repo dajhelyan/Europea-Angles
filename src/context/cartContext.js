@@ -9,37 +9,43 @@ function CardProvider({ children }) {
   const [cart, setCart] = useState([])
   const [cant, setCant] = useState(1);
 
-  function onAdd(itemToAdd, quantity = 1) {
-    // console.log(IsInCart(itemToAdd), 'cuan');
-    // const setquantity = quantity = 1;
+  function addItem(itemToAdd, quantity = 1) {
+    console.log(itemToAdd);
     if (IsInCart(itemToAdd) === true) {
       console.log("entree", 'aqui');
       const newItem = cart.map((item) => {
         if (item.id === itemToAdd.id) {
           const result = item.quantity + quantity;
-          return { ...item, quantity: result };
+          // let subTotal = item.price * result;
+          // console.log(quantity);
+          let stock = item.stock - result
+          return { ...item, quantity: result, stock: stock };
         }
         return item
       })
       setCart(newItem)
     } else {
       itemToAdd.quantity = quantity;
+      itemToAdd.stock = itemToAdd.stock - quantity;
       console.log(itemToAdd, 'pop');
       setCart([...cart, itemToAdd]);
     }
   }
 
-  function updateCant(id, cant) {
-    if (IsInCart(id) === true && cant > 0) {
+  function updateCant(itemToAdd, cantidad = 1) {
+    if (IsInCart(itemToAdd) === true && cantidad >=1) {
       const newCant = cart.map((item) => {
-        if (item.id === id) {
-          return { ...item, quantity: newCant };
+        if (item.id === itemToAdd.id) {
+          console.log(cantidad, "entree");
+          const result = item.quantity++;
+          // let stock = item.stock - result
+          return { ...item, quantity: result};
         }
         return item
       })
       setCart(newCant);
     } else {
-      removeItem(id);
+      removeItem(itemToAdd.id);
     }
   }
 
@@ -59,7 +65,7 @@ function CardProvider({ children }) {
       value={{
         cart,
         setCart,
-        onAdd,
+        addItem,
         updateCant,
         removeItem,
         cant,

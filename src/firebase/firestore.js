@@ -11,7 +11,13 @@ const getItemsCategory = (collectionName, category, id) => {
   return itemCollection.get();
 }
 
-export   {
+const getDoc = (collectionName, id) => {
+  const doc = Firestore().collection(collectionName).doc(id)
+  return doc.get();
+}
+
+export {
   getCollection,
-  getItemsCategory
+  getItemsCategory,
+  getDoc
 }

@@ -3,7 +3,7 @@ import { Card, Badge, ListGroup } from 'react-bootstrap'
 import { Link } from "react-router-dom";
 
 export const Item = ({ data }) => {
-
+console.log(data);
 	return (
 		<Link to={`/product/detail/${data.id}`}>
 			<Card className={"card-item"} style={{ }}>

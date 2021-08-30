@@ -9,9 +9,9 @@ import { NavLink } from "react-router-dom";
 export function ItemDetail({ data }) {
   const [select, setSelect] = useState(false)
   // al dar click en agregar al carrito deberia agregar el item 
-  const { cant, setCant, onAdd, removeItem } = useCardContext();
+  const { cant, setCant, addItem, removeItem } = useCardContext();
   function handleAdd(quantityToAdd) {
-    onAdd(data, quantityToAdd)
+    addItem(data, quantityToAdd)
     setSelect(true)
   }
 
@@ -26,13 +26,14 @@ export function ItemDetail({ data }) {
   }, [select, cant]);
 
   return (
-    <Container>
+    <Container className="j-center">
+        <Col md={8} >
       <Row>
-        <Col xs={4} md={4}>
-          <Image src={data.pictureUrl} rounded />
+        <Col xs={4} md={4} className={"aling-center"}>
+          <Image className={"product-photo"} src={data.pictureUrl} rounded />
         </Col>
-        <Col xs={6} md={4}>
-          <Card border="light" style={{ width: '18rem' }}>
+        <Col xs={6} md={8}>
+          <Card border="light" >
 
             <Card.Body>
               <Card.Title>{data.name}</Card.Title>
@@ -42,7 +43,7 @@ export function ItemDetail({ data }) {
               <Card.Footer className={"item-footer"}>
                 <h4> <Badge variant="info">{`$ ${subPrice(data, cant)}`}</Badge>
                 </h4>
-                <ItemCount stock={data.stock} initial={cant} onAdd={handleAdd} />
+                <ItemCount stock={data.stock} onAdd={handleAdd} />
                 <Button
                   type="button"
                   className={select ? 'w-100' : 'd-none'}
@@ -65,6 +66,7 @@ export function ItemDetail({ data }) {
         </Col>
 
       </Row>
+      </Col>
     </Container>
   )
 }

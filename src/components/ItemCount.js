@@ -2,29 +2,42 @@ import React, { useState, useEffect } from "react";
 import { Card, Button, ListGroup } from 'react-bootstrap'
 import { useCardContext } from "../context/cartContext";
 
-export function ItemCount({ stock, initial, onAdd, btnState }) {
-	const { cant, setCant } = useCardContext();
-
-  // const [cant, setCount] = useState(cant)
+export function ItemCount({ data, stock, onAdd, btnState, cardClass }) {
+	const { cant, setCant, updateCant } = useCardContext();
+	const [newCant, setNewCant] = useState()
 	const addCount = () => {
-		if(cant === stock){
+		if (!onAdd) {
+			let newQuantity = data.quantity += 1;
+			setNewCant(newQuantity);
+			updateCant(data, newCant)
+		} else if (cant !== stock) {
+			setCant(cant + 1)
+		} else {
 			alert('Lo sentimos, no contamos con mas stock disponible.')
+
 		}
-		setCant(cant + 1)
+
+
+
 	}
 	const restCount = () => {
-		if(cant === stock){
+		if (!onAdd) {
+			let newQuantity = data.quantity -= 1;
+			setNewCant(newQuantity);
+			updateCant(data, newCant)
+		} else if (onAdd && cant !== stock) {
+			setCant(cant - 1)
+		} else {
 			alert('Lo sentimos, no contamos con mas stock disponible.')
 		}
-		setCant(cant - 1)
+
 	}
 
 	useEffect(() => {
 	}, [cant]);
 
 	return (
-		<Card className={"card-item"} style={{ width: '18rem', margin: '1rem auto' }}>
-			<Card.Header className={"item-header"}>Polo Polister</Card.Header>
+		<Card className={btnState ? 'cart-trans' : 'card-item'} >
 			<Card.Body className={"item-body"}>
 				<div className={"cont-controler-item"}>
 					<div className={"control-count-item"}>
@@ -38,7 +51,7 @@ export function ItemCount({ stock, initial, onAdd, btnState }) {
 					</div>
 				</div>
 			</Card.Body>
-			<Card.Footer className={"item-footer"}>
+			<Card.Footer className={btnState ? 'd-none' : "item-footer"}>
 				<Button
 					type="button"
 					onClick={() => { onAdd(cant) }}
